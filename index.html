@@ -73,6 +73,44 @@
 </head>
 <body>
  
+		<div class="header" id="myHeader">
+			<div id="embed-iframe"></div>
+		</div>
+		
+		<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+		<script type="text/javascript">
+			window.onSpotifyIframeApiReady = (IFrameAPI) => {
+			  const element = document.getElementById('embed-iframe');
+			  const options = {
+				width: '0px',
+				height: '0px',
+				position: 'fixed',
+				top: '0',
+				uri: 'spotify:track:1MdbDBwEEecnlLiyWChJFh'
+			  };
+			  const callback = (EmbedController) => {
+				document.querySelectorAll('.box').forEach(
+				  box => {
+					box.addEventListener('click', () => {
+						EmbedController.loadUri(box.dataset.spotifyId);
+						var myArray = document.getElementsByClassName('box');
+						var arr = Array.from(myArray);
+						var playing = box.style.color;
+						  if (playing == 'rgb(0, 120, 0)'){
+							EmbedController.pause();
+							arr.forEach((item,counter)=>(item.style.color = "#333333"));
+						  } else {
+							EmbedController.play();
+							arr.forEach((item,counter)=>(item.style.color = "#333333"));
+							box.style.color = "#007800";
+						  }
+					});
+				  })
+			  };
+			  IFrameAPI.createController(element, options, callback);
+			};
+		  </script>	
+
   <h1>Zeltival 2026</h1>
   <p>
     This is a PWA template for GitHub pages. 
