@@ -1,15 +1,15 @@
 {
-  "name": "Github Page PWA",
-  "short_name": "GPPWA",
-  "description": "Github Page as a Progressive Web App",
-  "scope": "/github-page-pwa/",
-  "start_url": "/github-page-pwa/",
+  "name": "Zeltival 2026",
+  "short_name": "Zeltival",
+  "description": "Zeltival Musicbox",
+  "scope": "/zeltival-pwa/",
+  "start_url": "/zeltival-pwa/",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "display": "standalone", 
   "icons": [
       {
-        "src": "/github-page-pwa/img/icon.png",
+        "src": "/zeltival-pwa/img/icon.png",
         "type": "image/png",
         "sizes": "700x700"
       }
