@@ -84,9 +84,8 @@
 		</div>
 
 		<script type="text/javascript">
-			document.addEventListener('selectstart', function(e) {
-   			 e.preventDefault();
-			});
+			document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+			document.addEventListener('contextmenu', event => event.preventDefault());
 		</script>
 	
 		<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
