@@ -82,7 +82,13 @@
 		<div class="header" id="myHeader">
 			<div id="embed-iframe"></div>
 		</div>
-		
+
+		<script type="text/javascript">
+			document.addEventListener('selectstart', function(e) {
+   			 e.preventDefault();
+			});
+		</script>
+	
 		<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
 		<script type="text/javascript">
 			window.onSpotifyIframeApiReady = (IFrameAPI) => {
