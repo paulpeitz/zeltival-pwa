@@ -91,36 +91,44 @@
 		<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
 		<script type="text/javascript">
 			window.onSpotifyIframeApiReady = (IFrameAPI) => {
-			  const element = document.getElementById('embed-iframe');
-			  const options = {
-				width: '0px',
-				height: '0px',
-				position: 'fixed',
-				top: '0',
-				uri: 'spotify:track:1MdbDBwEEecnlLiyWChJFh'
-			  };
-			  const callback = (EmbedController) => {
-				document.querySelectorAll('.box').forEach(
-				  box => {
-					box.addEventListener('click', () => {
-						EmbedController.loadUri(box.dataset.spotifyId);
-						var myArray = document.getElementsByClassName('box');
-						var arr = Array.from(myArray);
-						var playing = box.style.color;
-						  if (playing == 'rgb(0, 120, 0)'){
-							EmbedController.pause();
-							arr.forEach((item,counter)=>(item.style.color = "#333333"));
-						  } else {
-							EmbedController.play();
-							arr.forEach((item,counter)=>(item.style.color = "#333333"));
-							box.style.color = "#007800";
-						  }
+				const element = document.getElementById('embed-iframe');
+				const options = {
+					width: '0px',
+					height: '0px',
+					uri: 'spotify:track:1MdbDBwEEecnlLiyWChJFh'
+				};
+
+				const callback = (EmbedController) => {
+					const boxes = document.querySelectorAll('.box');
+
+					boxes.forEach(box => {
+						box.addEventListener('click', () => {
+							const spotifyId = box.dataset.spotifyId;
+							const isPlaying = box.style.color === 'rgb(0, 120, 0)';
+
+							// Reset all boxes to default state first
+							boxes.forEach(item => {
+								item.style.color = "#333333";
+								item.style.backgroundColor = "transparent"; // Or your default bg
+							});
+
+							if (isPlaying) {
+								EmbedController.pause();
+								// State is already reset above
+							} else {
+								EmbedController.loadUri(spotifyId);
+								EmbedController.play();
+								
+								// Highlight the active box
+								box.style.color = "#007800";
+								box.style.backgroundColor = "#e0f2f1"; // Example light green bg
+							}
+						});
 					});
-				  })
-			  };
-			  IFrameAPI.createController(element, options, callback);
+				};
+
+				IFrameAPI.createController(element, options, callback);
 			};
-		  </script>	
 
 		<div class="wrapper">
 		
